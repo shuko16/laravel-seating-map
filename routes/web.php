@@ -9,6 +9,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::view('/sample','sample');
+
 Route::get('/dashboard', function (Request $request) {
     if ($request->user_id) {
         if (Seat::where('user_id', $request->user_id)->count()) {

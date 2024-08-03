@@ -1,6 +1,9 @@
 @php
     $seatedList = [1, 2, 3, 28, 32];
-    $noseatList = [5, 10, 15, 17, 29, 41, 53, 65, 77, 89, 101, 113,6];
+    $noseatList = [5, 10, 15, 17, 29, 41, 53, 65, 77, 89, 101, 113, 6];
+
+    $seatedListTwo = [1, 2, 3, 4, 5];
+    $noseatListTwo = [5, 10, 15];
 @endphp
 <x-app-layout>
     <x-slot name="header">
@@ -19,13 +22,13 @@
                                 @for ($i = 1; $i < 121; $i++)
                                     @if (in_array($i, $seatedList))
                                         <button
-                                            class="border border-cyan-500 text-cyan-500 text-xs">{{'番'}}<br>seatedxx</button>
+                                            class="border border-cyan-500 text-cyan-500 text-xs">{{ '番' }}<br>seatedxx</button>
                                     @else
                                         @if (in_array($i, $noseatList))
-                                            <button  disabled><br></button>
+                                            <button disabled><br></button>
                                         @else
                                             <button
-                                                class="border border-red-500 text-red-500 text-xs">{{ $i.'番' }}<br>emp</button>
+                                                class="border border-red-500 text-red-500 text-xs">{{ $i . '番' }}<br>emp</button>
                                         @endif
                                     @endif
                                 @endfor
@@ -34,11 +37,11 @@
                         <div>
                             <div class="grid grid-cols-12 text-center">
                                 @for ($i = 1; $i < 121; $i++)
-                                    @if (in_array($i, $seatedList))
+                                    @if (in_array($i, $seatedListTwo))
                                         <button
                                             class="border border-cyan-500 text-cyan-500 text-xs">{{ $i }}<br>seat</button>
                                     @else
-                                        @if (in_array($i, $noseatList))
+                                        @if (in_array($i, $noseatListTwo))
                                             <button class="border" disabled><br></button>
                                         @else
                                             <button

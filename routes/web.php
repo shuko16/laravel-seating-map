@@ -9,6 +9,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/test', function () {
+    return view('layout');
+});
+
 Route::get('/dashboard', function (Request $request) {
     if ($request->user_id) {
         if (Seat::where('user_id', $request->user_id)->count()) {

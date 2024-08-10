@@ -66,13 +66,13 @@
                                 @for ($i = 1; $i < 421; $i++)
                                     @if (in_array($i, $seatedList))
                                         <button
-                                            class="border border-cyan-500 text-cyan-500 text-xs">{{'番'}}<br>seatedxx</button>
+                                            class="h-10 border border-cyan-500 text-cyan-500 text-xs">{{'番'}}<br>seatedxx</button>
                                     @else
                                         @if (in_array($i, $noseatList))
-                                            <button disabled><br></button>
+                                            <button class="h-10" disabled><br></button>
                                         @else
                                             <button
-                                                class="border border-red-500 text-red-500 text-xs">{{ $i . '番' }}<br>emp</button>
+                                                class="h-10 border border-red-500 text-red-500 text-xs">{{ $i . '番' }}<br>emp</button>
                                         @endif
                                     @endif
                                 @endfor
@@ -83,13 +83,13 @@
                                 @for ($i = 1; $i < 421; $i++)
                                     @if (in_array($i, $seatedListTwo))
                                         <button
-                                            class="border border-cyan-500 text-cyan-500 text-xs">{{ $i }}<br>seat</button>
+                                            class="h-10 border border-cyan-500 text-cyan-500 text-xs">{{ $i }}<br>seat</button>
                                     @else
                                         @if (in_array($i, $noseatListTwo))
-                                            <button class= disabled><br></button>
+                                            <button class="h-10" disabled><br></button>
                                         @else
                                             <button
-                                                class="border border-red-500 text-red-500 text-xs">{{ $i }}<br>emp</button>
+                                                class="h-10 border border-red-500 text-red-500 text-xs">{{ $i }}<br>emp</button>
                                         @endif
                                     @endif
                                 @endfor

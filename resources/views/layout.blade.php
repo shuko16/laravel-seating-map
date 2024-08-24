@@ -1,6 +1,6 @@
 <x-app-layout>
     @php
-        $seatedList = [7];
+        $seatedList = [7,8];
         $noseatList = 
         [1, 2, 3, 4, 5, 6, 9, 11,12,
         13,18, 20,21,22,23,24,
@@ -17,7 +17,11 @@
         145,146,147,148,149,150,151,152,153,154,155,156,
         157,158,159,160,161,162,163,164,165,166,167,168,
         169,167,168,169,170,171,172,173,174,175,176,177,178,179,180,
-        181,182,183,184,185,186,187,188,189,190,191,192,];
+        181,182,183,184,185,186,187,188,189,190,191,192];
+        // $noseatList[] = range(193,250);
+        
+
+
 
         $seatedListTwo= [3,];
         $noseatListTwo=
@@ -33,7 +37,7 @@
         109,110,111,112,113,114,115,116,117,118,119,120,
         121,122,123,124,125,126,127,128,129,130,131,132,
         133,134,135,139,140,141,142,143,144,
-        146,147,148,149,150,151,152,153,154,155,156,
+        145,146,147,148,149,150,151,152,153,154,155,156,
         157,158,159,160,161,162,163,164,165,166,167,168,
         169,170,171,172,173,174,175,176,177,178,179,
         181,182,183,184,185,186,187,188,189,190,191,192,
@@ -66,13 +70,13 @@
                                 @for ($i = 1; $i < 421; $i++)
                                     @if (in_array($i, $seatedList))
                                         <button
-                                            class="border border-cyan-500 text-cyan-500 text-xs">{{'番'}}<br>seatedxx</button>
+                                            class="h-10 border border-cyan-500 text-cyan-500 text-xs">{{'番'}}<br>seatedxx</button>
                                     @else
                                         @if (in_array($i, $noseatList))
-                                            <button disabled><br></button>
+                                            <button class="h-10" disabled><br></button>
                                         @else
                                             <button
-                                                class="border border-red-500 text-red-500 text-xs">{{ $i . '番' }}<br>emp</button>
+                                                class="h-10 border border-red-500 text-red-500 text-xs">{{ $i . '番' }}<br>emp</button>
                                         @endif
                                     @endif
                                 @endfor
@@ -83,13 +87,13 @@
                                 @for ($i = 1; $i < 421; $i++)
                                     @if (in_array($i, $seatedListTwo))
                                         <button
-                                            class="border border-cyan-500 text-cyan-500 text-xs">{{ $i }}<br>seat</button>
+                                            class="h-10 border border-cyan-500 text-cyan-500 text-xs">{{ $i }}<br>seat</button>
                                     @else
                                         @if (in_array($i, $noseatListTwo))
-                                            <button class= disabled><br></button>
+                                            <button class="h-10" disabled><br></button>
                                         @else
                                             <button
-                                                class="border border-red-500 text-red-500 text-xs">{{ $i }}<br>emp</button>
+                                                class="h-10 border border-red-500 text-red-500 text-xs">{{ $i }}<br>emp</button>
                                         @endif
                                     @endif
                                 @endfor

@@ -20,9 +20,10 @@
         181,182,183,184,185,186,187,188,189,190,191,192];
         // $noseatList[] = range(193,250);
 
-        for ($i=193; $i < 253; $i++) { 
-            $noseatList[] = $i;
-        }
+        $noseatList = array_merge($noseatList,range(193,252));
+        // for ($i=193; $i < 253; $i++) { 
+        //     $noseatList[] = $i;
+        // }
 
         $seatedListTwo= [3,];
         $noseatListTwo=

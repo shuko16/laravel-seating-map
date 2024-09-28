@@ -13,17 +13,25 @@ class SeatSeeder extends Seeder
      */
     public function run(): void
     {
-        Seat::create([
-            'user_id' => 1,
-        ]);
-
-        for ($i = 0; $i < 5; $i++) {
-            Seat::create([]);
+        $arr = [7, 8,14,15,16,17];
+        foreach ($arr as $val) {
+            Seat::create([
+                'user_id' => 1,
+                'seat_no' => $val,
+                'seat_type' => 1,
+    
+            ]);
+    
         }
 
-        Seat::create([
-            'user_id' => 2,
-        ]);
+       
+        // for ($i = 0; $i < 5; $i++) {
+        //     Seat::create([]);
+        // }
+
+        // Seat::create([
+        //     'user_id' => 2,
+        // ]);
 
     }
 }

@@ -1,6 +1,15 @@
 <x-app-layout>
     @php
-        $seatedList = [7,8];
+        // $seatedList = [7,8];
+        // $seatedList = App\Models\Seat::select('seat_no')->get();
+        $seatedList = [];
+        $seatedListlocal = App\Models\Seat::select('seat_no')->get();
+        // dump($seatedList[0]->seat_no);
+
+       foreach ($seatedListlocal as $seat){
+        $seatedList[] = $seat->seat_no;
+       }
+        // $seatedList[] = $seatedList2[0]->seat_no;
         $noseatList = 
         [1, 2, 3, 4, 5, 6, 9, 11,12,
         13,18, 20,21,22,23,24,

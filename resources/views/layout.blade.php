@@ -34,7 +34,7 @@
         }
 
 
-        $seatedListTwo= [3,];
+        $seatedListTwo= [];
         $noseatListTwo=
         [1,2,4,7,8,11,12,
         13,14,15,16,17,19,20,22,23,24,
@@ -117,7 +117,7 @@
                     <br>
                     <br>
                     {{-- 12 ライン --}}
-                    <div class="grid grid-cols-12 text-center">
+                    {{-- <div class="grid grid-cols-12 text-center">
                         @for ($i = 1; $i < 181; $i++)
                             @if (in_array($i, $seatedList))
                                 <button
@@ -131,7 +131,7 @@
                                 @endif
                             @endif
                         @endfor
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

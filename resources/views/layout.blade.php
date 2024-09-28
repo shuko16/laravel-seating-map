@@ -81,31 +81,31 @@
                                 @for ($i = 1; $i < 421; $i++)
                                     @if (in_array($i, $seatedList))
                                         <button
-                                            class="h-10 border border-cyan-500 text-cyan-500 text-xs">{{'番'}}<br>seatedxx</button>
+                                            class="h-10 border border-cyan-500 text-cyan-500 text-xs">{{ $i . '番'}}<br>seatedxx</button>
                                     @else
-                                        @if (in_array($i, $noseatList))
+                                        {{-- @if (in_array($i, $noseatList)) --}}
                                             <button class="h-10" disabled><br></button>
-                                        @else
+                                        {{-- @else
                                             <button
                                                 class="h-10 border border-red-500 text-red-500 text-xs">{{ $i . '番' }}<br>emp</button>
-                                        @endif
+                                        @endif --}}
                                     @endif
                                 @endfor
                             </div>
                         </div>
                         <div>
                             <div class="grid grid-cols-12 text-center">
-                                @for ($i = 1; $i < 421; $i++)
-                                    @if (in_array($i, $seatedListTwo))
+                                @for ($i = 421; $i < 842; $i++)
+                                    @if (in_array($i, $seatedList))
                                         <button
-                                            class="h-10 border border-cyan-500 text-cyan-500 text-xs">{{ $i }}<br>seat</button>
+                                            class="h-10 border border-cyan-500 text-cyan-500 text-xs">{{ $i . '番' }}<br>seat</button>
                                     @else
-                                        @if (in_array($i, $noseatListTwo))
+                                        {{-- @if (in_array($i, $noseatListTwo)) --}}
                                             <button class="h-10" disabled><br></button>
-                                        @else
+                                        {{-- @else
                                             <button
                                                 class="h-10 border border-red-500 text-red-500 text-xs">{{ $i }}<br>emp</button>
-                                        @endif
+                                        @endif --}}
                                     @endif
                                 @endfor
                             </div>

@@ -90,8 +90,8 @@
                                        
                                             <button class="h-10" disabled><br></button>
                                         {{-- @else --}}
-                                            <button
-                                                class="h-10 border border-red-500 text-red-500 text-xs">{{ $i . '番' }}<br>emp</button>
+                                            {{-- <button
+                                                class="h-10 border border-red-500 text-red-500 text-xs">{{ $i . '番' }}<br>emp</button> --}}
                                         {{-- @endif --}}
                                     @endif
                                 @endfor
@@ -111,8 +111,8 @@
                                         {{-- @if (in_array($i, $noseatListTwo)) --}}
                                             <button class="h-10" disabled><br></button>
                                         {{-- @else --}}
-                                            <button
-                                                class="h-10 border border-red-500 text-red-500 text-xs">{{ $i }}<br>emp</button>
+                                            {{-- <button
+                                                class="h-10 border border-red-500 text-red-500 text-xs">{{ $i }}<br>emp</button> --}}
                                         {{-- @endif --}}
                                     @endif
                                 @endfor

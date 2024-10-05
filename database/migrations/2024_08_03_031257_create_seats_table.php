@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('seats', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->nullable();
             $table->integer('seat_no');
             $table->integer('seat_type');
+            $table->bigInteger('user_id')->nullable();
             $table->timestamps();
         });
     }

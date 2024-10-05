@@ -38,7 +38,7 @@ class SeatSeeder extends Seeder
             Seat::create([
                 'user_id' => 1,
                 'seat_no' => $val,
-                'seat_type' => 1,
+                'seat_type' => 2,
     
             ]);
     

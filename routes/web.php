@@ -37,6 +37,12 @@ Route::post('/delete/{user_id}', function ($user_id) {
     return view('dashboard', ['seats' => $seats]);
 })->middleware(['auth', 'verified'])->name('delete');
 
+Route::post('/addSeated/{user_id}/{seat_no}', function ($user_id,$seat_no) {
+
+    dd($seat_no);
+    
+})->middleware(['auth', 'verified'])->name('addSeated');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

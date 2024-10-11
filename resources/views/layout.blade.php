@@ -48,21 +48,21 @@
                             <div class="grid grid-cols-12 text-center">
                                 @for ($i = 1; $i < 421; $i++)
                                     @if (in_array($i, $seatedList))
-                                    
-                                        <form action="{{ route('addSeated', ['user_id' => Auth::user()->id, 'seat_no' => $i]) }}"
-                                            method="post">
+                                        <form action="{{ route('removeSeated', ['seat_no' => $i]) }}" method="post">
                                             @csrf
-
-
-
                                             <button
-                                                class="h-10 border border-cyan-500 text-cyan-500 text-xs">{{ $i . '番' }}<br>seatedxx</button>
+                                                class="w-[74px] h-9 border border-cyan-500 text-cyan-500 text-xs">{{ $i . '番' }}<br>
+                                                seatedxx
+                                            </button>
                                         </form>
                                     @elseif (in_array($i, $emptyList))
-                                        <button
-                                            class="h-10 border border-red-500 text-red-500 text-xs">{{ $i . '番' }}<br>emp</button>
+                                        <form action="{{ route('addSeated', ['seat_no' => $i]) }}" method="post">
+                                            @csrf
+                                            <button
+                                                class="w-[74px] h-9 border border-red-500 text-red-500 text-xs">{{ $i . '番' }}<br>emp</button>
+                                        </form>
                                     @else
-                                        <button class="h-10" disabled><br></button>
+                                        <button class="h-9" disabled><br></button>
                                     @endif
                                 @endfor
                             </div>
@@ -73,13 +73,21 @@
 
                                 @for ($i = 421; $i < 842; $i++)
                                     @if (in_array($i, $seatedList))
-                                        <button
-                                            class="h-10 border border-cyan-500 text-cyan-500 text-xs">{{ $i . '番' }}<br>seatedxx</button>
+                                        <form action="{{ route('removeSeated', ['seat_no' => $i]) }}" method="post">
+                                            @csrf
+                                            <button
+                                                class="w-[74px] h-9 border border-cyan-500 text-cyan-500 text-xs">{{ $i . '番' }}<br>
+                                                seatedxx
+                                            </button>
+                                        </form>
                                     @elseif (in_array($i, $emptyList))
-                                        <button
-                                            class="h-10 border border-red-500 text-red-500 text-xs">{{ $i . '番' }}<br>emp</button>
+                                        <form action="{{ route('addSeated', ['seat_no' => $i]) }}" method="post">
+                                            @csrf
+                                            <button
+                                                class="w-[74px] h-9 border border-red-500 text-red-500 text-xs">{{ $i . '番' }}<br>emp</button>
+                                        </form>
                                     @else
-                                        <button class="h-10" disabled><br></button>
+                                        <button class="h-9" disabled><br></button>
                                     @endif
                                 @endfor
                             </div>

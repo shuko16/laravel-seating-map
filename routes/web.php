@@ -12,7 +12,7 @@ Route::get('/', function () {
 
 Route::get('/test', function () {
     return view('layout');
-});
+})->name('index');
 
 Route::get('/dashboard', function (Request $request) {
     if ($request->user_id) {

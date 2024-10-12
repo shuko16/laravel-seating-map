@@ -8,6 +8,7 @@
 
         $seatedList = App\Models\Seat::whereSeatType(1)->pluck('seat_no')->toArray();
         $emptyList = App\Models\Seat::whereSeatType(2)->pluck('seat_no')->toArray();
+        $userList = App\Models\User::whereSeatType(1)->pluck('name')->toArray();
 
         //    foreach ($seatedListlocal as $seat){
         //     $seatedList[] = $seat->seat_no;
@@ -48,19 +49,21 @@
                             <div class="grid grid-cols-12 text-center">
                                 @for ($i = 1; $i < 421; $i++)
                                     @if (in_array($i, $seatedList))
-                                    
-                                        <form action="{{ route('addSeated', ['user_id' => Auth::user()->id, 'seat_no' => $i]) }}"
+                                        <form
+                                            action="{{ route('offSeat', ['user_id' => Auth::user()->id, 'seat_no' => $i]) }}"
                                             method="post">
                                             @csrf
-
-
-
                                             <button
-                                                class="h-10 border border-cyan-500 text-cyan-500 text-xs">{{ $i . '番' }}<br>seatedxx</button>
+                                                class="w-[74px] h-10 border border-cyan-500 text-cyan-500 text-xs">{{ $i . '番' }}<br>seatedxx</button>
                                         </form>
                                     @elseif (in_array($i, $emptyList))
-                                        <button
-                                            class="h-10 border border-red-500 text-red-500 text-xs">{{ $i . '番' }}<br>emp</button>
+                                        <form
+                                            action="{{ route('onSeat', ['user_id' => Auth::user()->id, 'seat_no' => $i]) }}"
+                                            method="post">
+                                            @csrf
+                                            <button
+                                                class="w-[74px] h-10 border border-red-500 text-red-500 text-xs">{{ $i . '番' }}<br>emp</button>
+                                        </form>
                                     @else
                                         <button class="h-10" disabled><br></button>
                                     @endif
@@ -69,15 +72,25 @@
                         </div>
                         <div>
                             <div class="grid grid-cols-12 text-center">
-
-
                                 @for ($i = 421; $i < 842; $i++)
                                     @if (in_array($i, $seatedList))
-                                        <button
-                                            class="h-10 border border-cyan-500 text-cyan-500 text-xs">{{ $i . '番' }}<br>seatedxx</button>
+                                    <form
+                                    action="{{ route('offSeat', ['user_id' => Auth::user()->id, 'seat_no' => $i]) }}"
+                                    method="post">
+                                    @csrf
+                                    <button
+                                        class="w-[74px] h-10 border border-cyan-500 text-cyan-500 text-xs">{{ $i . '番' }}<br>seatedxx</button>
+                                </form>
                                     @elseif (in_array($i, $emptyList))
-                                        <button
-                                            class="h-10 border border-red-500 text-red-500 text-xs">{{ $i . '番' }}<br>emp</button>
+                                    <form
+                                    action="{{ route('onSeat', ['user_id' => Auth::user()->id, 'seat_no' => $i]) }}"
+                                    method="post">
+                                    @csrf
+                                    <button
+                                        class="w-[74px] h-10 border border-red-500 text-red-500 text-xs">{{ $i . '番' }}<br>emp</button>
+                                </form>
+                                    
+
                                     @else
                                         <button class="h-10" disabled><br></button>
                                     @endif

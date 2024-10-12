@@ -50,7 +50,7 @@
                                 @for ($i = 1; $i < 421; $i++)
                                     @if (in_array($i, $seatedList))
                                         <form
-                                            action="{{ route('offSeat', ['user_id' => Auth::user()->id, 'seat_no' => $i]) }}"
+                                            action="{{ route('offSeat', ['seat_no' => $i]) }}"
                                             method="post">
                                             @csrf
                                             <button
@@ -58,7 +58,7 @@
                                         </form>
                                     @elseif (in_array($i, $emptyList))
                                         <form
-                                            action="{{ route('onSeat', ['user_id' => Auth::user()->id, 'seat_no' => $i]) }}"
+                                            action="{{ route('onSeat', ['seat_no' => $i]) }}"
                                             method="post">
                                             @csrf
                                             <button
@@ -75,7 +75,7 @@
                                 @for ($i = 421; $i < 842; $i++)
                                     @if (in_array($i, $seatedList))
                                     <form
-                                    action="{{ route('offSeat', ['user_id' => Auth::user()->id, 'seat_no' => $i]) }}"
+                                    action="{{ route('offSeat', ['seat_no' => $i]) }}"
                                     method="post">
                                     @csrf
                                     <button
@@ -83,7 +83,7 @@
                                 </form>
                                     @elseif (in_array($i, $emptyList))
                                     <form
-                                    action="{{ route('onSeat', ['user_id' => Auth::user()->id, 'seat_no' => $i]) }}"
+                                    action="{{ route('onSeat', ['seat_no' => $i]) }}"
                                     method="post">
                                     @csrf
                                     <button

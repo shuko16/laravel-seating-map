@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SeatController;
 use App\Models\Seat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -37,17 +38,8 @@ Route::post('/delete/{user_id}', function ($user_id) {
     return view('dashboard', ['seats' => $seats]);
 })->middleware(['auth', 'verified'])->name('delete');
 
-Route::post('/onSeat/{user_id}/{seat_no}', function ($user_id,$seat_no) {
-
-    dd($seat_no);
-    
-})->middleware(['auth', 'verified'])->name('onSeat');
-
-Route::post('/offSeat/{user_id}/{seat_no}', function ($user_id,$seat_no) {
-
-    dd($seat_no);
-    
-})->middleware(['auth', 'verified'])->name('offSeat');
+Route::post('/offSeat/{seat_no}', [SeatController::class, 'offSeat'])->name('offSeat');
+Route::post('/onSeat/{seat_no}', [SeatController::class, 'onSeat'])->name('onSeat');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

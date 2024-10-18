@@ -6,9 +6,16 @@
         // $seatedListlocal = App\Models\Seat::select('seat_no')->get();
         // dump($seatedList[0]->seat_no);
 
+        $seatUsers = [];
+
         $seatedList = App\Models\Seat::whereSeatType(1)->pluck('seat_no')->toArray();
         $emptyList = App\Models\Seat::whereSeatType(2)->pluck('seat_no')->toArray();
-        $userList = App\Models\User::whereSeatType(1)->pluck('name')->toArray();
+
+        $seatUsersList = App\Models\Seat::whereSeatType(1)->with('user')->get();
+
+        foreach ($seatUsersList as $seatUser) {
+            $seatUsers[$seatUser->seat_no] = $seatUser->user->name;
+        }
 
         //    foreach ($seatedListlocal as $seat){
         //     $seatedList[] = $seat->seat_no;
@@ -40,6 +47,9 @@
         </h2>
     </x-slot>
     <div class="py-12">
+        <div class="m-4 ml-12 text-red-500">
+            {{ $errors->first('otherUserSeated') }}
+        </div>
         <div class="max-w-full mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
@@ -49,23 +59,21 @@
                             <div class="grid grid-cols-12 text-center">
                                 @for ($i = 1; $i < 421; $i++)
                                     @if (in_array($i, $seatedList))
-                                        <form
-                                            action="{{ route('offSeat', ['seat_no' => $i]) }}"
-                                            method="post">
+                                        <form action="{{ route('offSeat', ['seat_no' => $i]) }}" method="post">
                                             @csrf
                                             <button
-                                                class="w-[74px] h-10 border border-cyan-500 text-cyan-500 text-xs">{{ $i . '番' }}<br>seatedxx</button>
+                                                class="w-[74px] h-9 border border-cyan-500 text-cyan-500 text-xs">{{ $i . '番' }}<br>{{ $seatUsers[$i] }}
+                                                seated
+                                            </button>
                                         </form>
                                     @elseif (in_array($i, $emptyList))
-                                        <form
-                                            action="{{ route('onSeat', ['seat_no' => $i]) }}"
-                                            method="post">
+                                        <form action="{{ route('onSeat', ['seat_no' => $i]) }}" method="post">
                                             @csrf
                                             <button
-                                                class="w-[74px] h-10 border border-red-500 text-red-500 text-xs">{{ $i . '番' }}<br>emp</button>
+                                                class="w-[74px] h-9 border border-red-500 text-red-500 text-xs">{{ $i . '番' }}<br>emp</button>
                                         </form>
                                     @else
-                                        <button class="h-10" disabled><br></button>
+                                        <button class="h-9" disabled><br></button>
                                     @endif
                                 @endfor
                             </div>
@@ -74,25 +82,20 @@
                             <div class="grid grid-cols-12 text-center">
                                 @for ($i = 421; $i < 842; $i++)
                                     @if (in_array($i, $seatedList))
-                                    <form
-                                    action="{{ route('offSeat', ['seat_no' => $i]) }}"
-                                    method="post">
-                                    @csrf
-                                    <button
-                                        class="w-[74px] h-10 border border-cyan-500 text-cyan-500 text-xs">{{ $i . '番' }}<br>seatedxx</button>
-                                </form>
+                                        <form action="{{ route('offSeat', ['seat_no' => $i]) }}" method="post">
+                                            @csrf
+                                            <button
+                                                class="w-[74px] h-9 border border-cyan-500 text-cyan-500 text-xs">{{ $i . '番' }}<br>{{ $seatUsers[$i] }}
+                                                seated</button>
+                                        </form>
                                     @elseif (in_array($i, $emptyList))
-                                    <form
-                                    action="{{ route('onSeat', ['seat_no' => $i]) }}"
-                                    method="post">
-                                    @csrf
-                                    <button
-                                        class="w-[74px] h-10 border border-red-500 text-red-500 text-xs">{{ $i . '番' }}<br>emp</button>
-                                </form>
-                                    
-
+                                        <form action="{{ route('onSeat', ['seat_no' => $i]) }}" method="post">
+                                            @csrf
+                                            <button
+                                                class="w-[74px] h-9 border border-red-500 text-red-500 text-xs">{{ $i . '番' }}<br>emp</button>
+                                        </form>
                                     @else
-                                        <button class="h-10" disabled><br></button>
+                                        <button class="h-9" disabled><br></button>
                                     @endif
                                 @endfor
                             </div>

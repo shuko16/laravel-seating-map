@@ -8,7 +8,18 @@
 
         $seatedList = App\Models\Seat::whereSeatType(1)->pluck('seat_no')->toArray();
         $emptyList = App\Models\Seat::whereSeatType(2)->pluck('seat_no')->toArray();
-        $userList = App\Models\User::whereSeatType(1)->pluck('name')->toArray();
+        $seatUsersList = App\Models\Seat::whereSeatType(1)->with('user')->get();
+        $seatUsers = [];
+        foreach ($seatUsersList as $seatUser) {
+        // dump($seatUser);
+        // dump($seatUser->seat_no);
+        // dump($seatUser->user->name);
+            $seatUsers[$seatUser->seat_no] = $seatUser->user->name ?? 'なし';
+            //↑連想配列
+       
+        }
+        dump($seatUsers);
+   
 
         //    foreach ($seatedListlocal as $seat){
         //     $seatedList[] = $seat->seat_no;
@@ -54,12 +65,13 @@
                                             method="post">
                                             @csrf
                                             <button
-                                                class="w-[74px] h-10 border border-cyan-500 text-cyan-500 text-xs">{{ $i . '番' }}<br>seatedxx</button>
+                                                class="w-[74px] h-10 border border-cyan-500 text-cyan-500 text-xs">{{ $i . '番' }}<br>seated{{ $seatUsers[$i] }}</button>
                                         </form>
                                     @elseif (in_array($i, $emptyList))
                                         <form
                                             action="{{ route('onSeat', ['seat_no' => $i]) }}"
                                             method="post">
+                                            
                                             @csrf
                                             <button
                                                 class="w-[74px] h-10 border border-red-500 text-red-500 text-xs">{{ $i . '番' }}<br>emp</button>

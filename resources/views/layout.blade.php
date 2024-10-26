@@ -22,7 +22,6 @@
             //↑連想配列
         }
 
-
         dump($seatUsersName);
 
         //    foreach ($seatedListlocal as $seat){
@@ -59,19 +58,18 @@
             {{ $errors->first('otherUserSeated') }}
         </div>
         <div class="max-w-full mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     {{-- 2 * 12 ライン --}}
                     <div class="grid grid-cols-2 text-center">
                         <div>
                             <div class="grid grid-cols-12 text-center">
                                 @for ($i = 1; $i < 421; $i++)
-                                
                                     @if (in_array($i, $seatedList))
                                         <form action="{{ route('offSeat', ['seat_no' => $i]) }}" method="post">
                                             @csrf
                                             <button
-                                                class="w-[74px] h-10 border border-cyan-500 text-cyan-500 text-xs">{{ \App\Models\Seat::whereSeatNo($i)->get()->first()->ex ?? '' }}<br>seated{{  $seatUsers[$i] . $seatUsersName[$i]}}</button>
+                                                class="w-[74px] h-10 border border-cyan-500 text-cyan-500 text-xs tooltip tooltip-base-content" data-tip="{{ $seatUsersName[$i] }}">{{ \App\Models\Seat::whereSeatNo($i)->get()->first()->ex ?? '' }}<br>seated{{ $seatUsers[$i] }}</button>
                                         </form>
                                     @elseif (in_array($i, $emptyList))
                                         <form action="{{ route('onSeat', ['seat_no' => $i]) }}" method="post">

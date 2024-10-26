@@ -6,7 +6,7 @@
         // $seatedListlocal = App\Models\Seat::select('seat_no')->get();
         // dump($seatedList[0]->seat_no);
 
-        $seatedList = App\Models\Seat::whereSeatType(1)->pluck('seat_no','ex',)->toArray();
+        $seatedList = App\Models\Seat::whereSeatType(1)->pluck('seat_no')->toArray();
         $emptyList = App\Models\Seat::whereSeatType(2)->pluck('seat_no')->toArray();
         $seatUsersList = App\Models\Seat::whereSeatType(1)->with('user')->get();
         // dump($seatUsersList);
@@ -68,11 +68,10 @@
                                 @for ($i = 1; $i < 421; $i++)
                                 
                                     @if (in_array($i, $seatedList))
-                                    @dump($seatedList)
                                         <form action="{{ route('offSeat', ['seat_no' => $i]) }}" method="post">
                                             @csrf
                                             <button
-                                                class="w-[74px] h-10 border border-cyan-500 text-cyan-500 text-xs">{{ $i . '番' }}<br>seated{{ $seatUsers[$i] . $seatUsersName[$i]}}</button>
+                                                class="w-[74px] h-10 border border-cyan-500 text-cyan-500 text-xs">{{ \App\Models\Seat::whereSeatNo($i)->get()->first()->ex ?? '' }}<br>seated{{  $seatUsers[$i] . $seatUsersName[$i]}}</button>
                                         </form>
                                     @elseif (in_array($i, $emptyList))
                                         <form action="{{ route('onSeat', ['seat_no' => $i]) }}" method="post">

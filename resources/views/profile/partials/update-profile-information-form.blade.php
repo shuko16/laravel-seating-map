@@ -25,7 +25,7 @@
 
         <div>
             <x-input-label for="initials" :value="__('Initials')" />
-            <x-text-input id="initial" name="initial" type="text" class="mt-1 block w-full" :value="old('initials', $user->initials)" required autofocus autocomplete="initials" />
+            <x-text-input id="initial" name="initials" type="text" class="mt-1 block w-full" :value="old('initials', $user->initials)" required autocomplete="initials" />
             <x-input-error class="mt-2" :messages="$errors->get('initials')" />
         </div>
 

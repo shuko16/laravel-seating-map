@@ -6,8 +6,11 @@
         // $seatedListlocal = App\Models\Seat::select('seat_no')->get();
         // dump($seatedList[0]->seat_no);
 
-        $seatedList = App\Models\Seat::whereSeatType(1)->pluck('seat_no','ex',)->toArray();
-        $emptyList = App\Models\Seat::whereSeatType(2)->pluck('seat_no')->toArray();
+        // $seatedList = App\Models\Seat::whereSeatType(1)->pluck('seat_no','ex',)->toArray();
+        // $seatedList = App\Models\Seat::whereSeatType(1)->pluck('seat_no')->toArray();
+        // $emptyList = App\Models\Seat::whereSeatType(2)->pluck('seat_no')->toArray();
+        $seatedList = App\Models\Seat::whereSeatType(1)->pluck('ex', 'seat_no')->toArray();
+        $emptyList = App\Models\Seat::whereSeatType(2)->pluck('ex', 'seat_no')->toArray();
         $seatUsersList = App\Models\Seat::whereSeatType(1)->with('user')->get();
         // dump($seatUsersList);
 
@@ -22,8 +25,7 @@
             //↑連想配列
         }
 
-
-        dump($seatUsersName);
+        // dump($seatUsersName);
 
         //    foreach ($seatedListlocal as $seat){
         //     $seatedList[] = $seat->seat_no;
@@ -66,20 +68,21 @@
                         <div>
                             <div class="grid grid-cols-12 text-center">
                                 @for ($i = 1; $i < 421; $i++)
-                                
-                                    @if (in_array($i, $seatedList))
-                                    @dump($seatedList)
+                                    {{-- @if (in_array($i, $seatedList)) --}}
+                                    {{-- @dump($seatedList) --}}
+                                    @if (array_key_exists($i, $seatedList))
                                         <form action="{{ route('offSeat', ['seat_no' => $i]) }}" method="post">
                                             @csrf
-                                            <button
-                                                class="w-[74px] h-10 border border-cyan-500 text-cyan-500 text-xs">{{ $i . '番' }}<br>seated{{ $seatUsers[$i] . $seatUsersName[$i]}}</button>
+                                            <button {{-- class="w-[74px] h-10 border border-cyan-500 text-cyan-500 text-xs">{{ $i . '番' }}<br>seated{{ $seatUsers[$i] . $seatUsersName[$i]}}</button>     --}}
+                                                class="w-[74px] h-10 border border-cyan-500 text-cyan-500 text-xs">{{ $seatedList[$i] }}<br>seated:{{ $seatUsers[$i] }}</button>
                                         </form>
-                                    @elseif (in_array($i, $emptyList))
-                                        <form action="{{ route('onSeat', ['seat_no' => $i]) }}" method="post">
+                                    {{-- @elseif (in_array($i, $emptyList)) --}}
 
+                                    @elseif (array_key_exists($i, $emptyList))
+                                        <form action="{{ route('onSeat', ['seat_no' => $i]) }}" method="post">
                                             @csrf
-                                            <button
-                                                class="w-[74px] h-10 border border-red-500 text-red-500 text-xs">{{ $i . '番' }}<br>emp</button>
+                                            <button {{-- class="w-[74px] h-10 border border-red-500 text-red-500 text-xs">{{ $i . '番' }}<br>emp</button> --}}
+                                                class="w-[74px] h-10 border border-red-500 text-red-500 text-xs">{{ $seatedList[$i] }}<br>seated{{ $seatUsers[$i] . $seatUsersName[$i] }}</button>
                                         </form>
                                     @else
                                         <button class="h-10" disabled><br></button>
@@ -90,20 +93,22 @@
                         <div>
                             <div class="grid grid-cols-12 text-center">
                                 @for ($i = 421; $i < 842; $i++)
-                                    @if (in_array($i, $seatedList))
+                                    {{-- @if (in_array($i, $seatedList)) --}}
+                                    @if (array_key_exists($i, $seatedList))
                                         <form action="{{ route('offSeat', ['seat_no' => $i]) }}" method="post">
                                             @csrf
-                                            <button
-                                                class="w-[74px] h-10 border border-cyan-500 text-cyan-500 text-xs">{{ $i . '番' }}<br>seatedxx</button>
-                                        </form>
-                                    @elseif (in_array($i, $emptyList))
-                                        <form action="{{ route('onSeat', ['seat_no' => $i]) }}" method="post">
-                                            @csrf
-                                            <button
-                                                class="w-[74px] h-10 border border-red-500 text-red-500 text-xs">{{ $i . '番' }}<br>emp</button>
-                                        </form>
-                                    @else
-                                        <button class="h-10" disabled><br></button>
+                                            <button {{-- class="w-[74px] h-10 border border-cyan-500 text-cyan-500 text-xs">{{ $i . '番' }}<br>seatedxx</button> --}}
+                                            class="w-[74px] h-10 border border-cyan-500 text-cyan-500 text-xs">{{ $seatedList[$i] }}<br>seated{{ $seatUsers[$i] . $seatUsersName[$i] }}</button>
+                                            </from>
+                                            {{-- @elseif (in_array($i, $emptyList)) --}}
+                                        @elseif (array_key_exisits($i, $emptyList))
+                                            <form action="{{ route('onSeat', ['seat_no' => $i]) }}" method="post">
+                                                @csrf
+                                                <button {{-- class="w-[74px] h-10 border border-red-500 text-red-500 text-xs">{{ $i . '番' }}<br>emp</button> --}}
+                                                    class="w-[74px] h-10 border border-red-500 text-red-500 text-xs">{{ $emptyList[$i] }}<br>emp</button>
+                                            </form>
+                                        @else
+                                            <button class="h-10" disabled><br></button>
                                     @endif
                                 @endfor
                             </div>

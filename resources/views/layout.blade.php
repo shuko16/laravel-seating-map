@@ -61,7 +61,7 @@
             {{ $errors->first('otherUserSeated') }}
         </div>
         <div class="max-w-full mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     {{-- 2 * 12 ライン --}}
                     <div class="grid grid-cols-2 text-center">
@@ -74,7 +74,7 @@
                                         <form action="{{ route('offSeat', ['seat_no' => $i]) }}" method="post">
                                             @csrf
                                             <button {{-- class="w-[74px] h-10 border border-cyan-500 text-cyan-500 text-xs">{{ $i . '番' }}<br>seated{{ $seatUsers[$i] . $seatUsersName[$i]}}</button>     --}}
-                                                class="w-[74px] h-10 border border-cyan-500 text-cyan-500 text-xs">{{ $seatedList[$i] }}<br>seated:{{ $seatUsers[$i] }}</button>
+                                                class="w-[74px] h-10 border border-cyan-500 text-cyan-500 text-xs tooltip tooltip-base-content" data-tip="{{ $seatUsersName[$i] }}">{{ $seatedList[$i] }}<br>seated:{{ $seatUsers[$i] }}</button>
                                         </form>
                                     {{-- @elseif (in_array($i, $emptyList)) --}}
 
@@ -98,7 +98,7 @@
                                         <form action="{{ route('offSeat', ['seat_no' => $i]) }}" method="post">
                                             @csrf
                                             <button {{-- class="w-[74px] h-10 border border-cyan-500 text-cyan-500 text-xs">{{ $i . '番' }}<br>seatedxx</button> --}}
-                                            class="w-[74px] h-10 border border-cyan-500 text-cyan-500 text-xs">{{ $seatedList[$i] }}<br>seated{{ $seatUsers[$i] . $seatUsersName[$i] }}</button>
+                                            class="w-[74px] h-10 border border-cyan-500 text-cyan-500 text-xs tooltip tooltip-base-content" data-tip="{{ $seatUsersName[$i] }}">{{ $seatedList[$i] }}<br>seated{{ $seatUsers[$i] }}</button>
                                             </from>
                                             {{-- @elseif (in_array($i, $emptyList)) --}}
                                         @elseif (array_key_exists($i, $emptyList))

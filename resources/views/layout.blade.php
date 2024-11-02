@@ -99,7 +99,7 @@
                                             @csrf
                                             <button {{-- class="w-[74px] h-10 border border-cyan-500 text-cyan-500 text-xs">{{ $i . '番' }}<br>seatedxx</button> --}}
                                             class="w-[74px] h-10 border border-cyan-500 text-cyan-500 text-xs tooltip tooltip-base-content" data-tip="{{ $seatUsersName[$i] }}">{{ $seatedList[$i] }}<br>seated{{ $seatUsers[$i] }}</button>
-                                            </from>
+                                            </form>
                                             {{-- @elseif (in_array($i, $emptyList)) --}}
                                         @elseif (array_key_exists($i, $emptyList))
                                             <form action="{{ route('onSeat', ['seat_no' => $i]) }}" method="post">

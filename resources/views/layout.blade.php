@@ -82,7 +82,7 @@
                                         <form action="{{ route('onSeat', ['seat_no' => $i]) }}" method="post">
                                             @csrf
                                             <button {{-- class="w-[74px] h-10 border border-red-500 text-red-500 text-xs">{{ $i . '番' }}<br>emp</button> --}}
-                                                class="w-[74px] h-10 border border-red-500 text-red-500 text-xs">{{ $seatedList[$i] }}<br>seated{{ $seatUsers[$i] . $seatUsersName[$i] }}</button>
+                                                class="w-[74px] h-10 border border-red-500 text-red-500 text-xs">{{ $emptyList[$i] }}<br>emp</button>
                                         </form>
                                     @else
                                         <button class="h-10" disabled><br></button>
@@ -101,7 +101,7 @@
                                             class="w-[74px] h-10 border border-cyan-500 text-cyan-500 text-xs">{{ $seatedList[$i] }}<br>seated{{ $seatUsers[$i] . $seatUsersName[$i] }}</button>
                                             </from>
                                             {{-- @elseif (in_array($i, $emptyList)) --}}
-                                        @elseif (array_key_exisits($i, $emptyList))
+                                        @elseif (array_key_exists($i, $emptyList))
                                             <form action="{{ route('onSeat', ['seat_no' => $i]) }}" method="post">
                                                 @csrf
                                                 <button {{-- class="w-[74px] h-10 border border-red-500 text-red-500 text-xs">{{ $i . '番' }}<br>emp</button> --}}

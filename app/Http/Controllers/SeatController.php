@@ -9,6 +9,27 @@ use Illuminate\Validation\ValidationException;
 
 class SeatController extends Controller
 {
+    public function index()
+    {
+        $seatedList = Seat::whereSeatType(1)->pluck('ex', 'seat_no')->toArray();
+        $emptyList = Seat::whereSeatType(2)->pluck('ex', 'seat_no')->toArray();
+        $seatUsersList = Seat::whereSeatType(1)->with('user')->get();
+
+        $seatUsers = [];
+        $seatUsersName = [];
+        foreach ($seatUsersList as $seatUser) {
+            $seatUsers[$seatUser->seat_no] = $seatUser->user->initials ?? 'なし';
+            $seatUsersName[$seatUser->seat_no] = $seatUser->user->name ?? 'なし';
+        }
+        return view('layout', [
+            'seatedList' => $seatedList,
+            'emptyList' => $emptyList,
+            'seatUsersList' => $seatUsersList,
+            'seatUsers' => $seatUsers,
+            'seatUsersName' => $seatUsersName,
+        ]);
+    }
+
     public function offSeat($seat_no)
     {
         if (
@@ -20,9 +41,6 @@ class SeatController extends Controller
         ) {
             throw ValidationException::withMessages(['otherUserSeated' => 'other user already seated.']);
         }
-
-        
-
 
         $seat = Seat::whereSeatNo($seat_no)->get()->first();
         $seat->seat_type = 2;

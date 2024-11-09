@@ -4,8 +4,8 @@
 
     @env('local')
     <div class="space-y-2">
-        <x-login-link email="taro@test.com" label="Login as taro" redirect-url="{{ route('dashboard') }}" />
-        <x-login-link email="jiro@test.com" label="Login as jiro" redirect-url="{{ route('dashboard') }}" />
+        <x-login-link email="taro@test.com" label="Login as taro" redirect-url="{{ route('index') }}" />
+        <x-login-link email="jiro@test.com" label="Login as jiro" redirect-url="{{ route('index') }}" />
     </div>
     @endenv
 

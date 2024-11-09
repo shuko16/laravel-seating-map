@@ -9,6 +9,11 @@ use Illuminate\Validation\ValidationException;
 
 class SeatController extends Controller
 {
+    public function index()
+    {
+        return view('layout');
+    }
+
     public function offSeat($seat_no)
     {
         if (

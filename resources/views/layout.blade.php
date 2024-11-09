@@ -1,56 +1,20 @@
 <x-app-layout>
     @php
-        // $seatedList = [7,8];
-        // $seatedList = App\Models\Seat::select('seat_no')->get();
-        // $seatedList = [];
-        // $seatedListlocal = App\Models\Seat::select('seat_no')->get();
-        // dump($seatedList[0]->seat_no);
-
-        // $seatedList = App\Models\Seat::whereSeatType(1)->pluck('seat_no','ex',)->toArray();
-        // $seatedList = App\Models\Seat::whereSeatType(1)->pluck('seat_no')->toArray();
-        // $emptyList = App\Models\Seat::whereSeatType(2)->pluck('seat_no')->toArray();
+        
         $seatedList = App\Models\Seat::whereSeatType(1)->pluck('ex', 'seat_no')->toArray();
         $emptyList = App\Models\Seat::whereSeatType(2)->pluck('ex', 'seat_no')->toArray();
         $seatUsersList = App\Models\Seat::whereSeatType(1)->with('user')->get();
-        // dump($seatUsersList);
-
+       
         $seatUsers = [];
         $seatUsersName = [];
         foreach ($seatUsersList as $seatUser) {
-            // dump($seatUser);
-            // dump($seatUser->seat_no);
-            // dump($seatUser->user->name);
+            
             $seatUsers[$seatUser->seat_no] = $seatUser->user->initials ?? 'なし';
             $seatUsersName[$seatUser->seat_no] = $seatUser->user->name ?? 'なし';
             //↑連想配列
-        }
-
-        // dump($seatUsersName);
-
-        //    foreach ($seatedListlocal as $seat){
-        //     $seatedList[] = $seat->seat_no;
-        //    }
-        // $seatedList[] = $seatedList2[0]->seat_no;
-        // $noseatList =
-        // [1, 2, 3, 4, 5, 6, 9, 11,12,
-        // 13,18, 20,21,22,23,24,
-        //
-        // 169,167,168,169,170,171,172,173,174,175,176,177,178,179,180,
-        // 181,182,183,184,185,186,187,188,189,190,191,192];
-        // // $noseatList[] = range(193,250);
-
-        // for ($i=193; $i < 253; $i++) {
-        //     $noseatList[] =$i;
-        // }
-
-        // $seatedListTwo= [];
-        // $noseatListTwo=
-        // [1,2,4,7,8,11,12,
-
-        // 384,
-        // 408,        ];
-
+        }       
     @endphp
+
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Seats') }}

@@ -9,64 +9,18 @@
             {{ $errors->first('otherUserSeated') }}
         </div>
         <div class="max-w-full mx-auto sm:px-6 lg:px-8">
-
             <div class="bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-
                     <div class="grid grid-cols-2 text-center">
-                        <div>
-                            <div class="grid grid-cols-12 text-center">
-                                @for ($i = 1; $i < 421; $i++)
-                                    @if (array_key_exists($i, $seatedList))
-                                        <form action="{{ route('offSeat', ['seat_no' => $i]) }}" method="post">
-                                            @csrf
-                                            <button
-                                                class="w-[74px] h-10 border border-cyan-500 text-cyan-500 text-xs tooltip tooltip-base-content"
-                                                data-tip="{{ $seatUsersName[$i] }}">
-
-                                                {{ $seatedList[$i] }}
-                                                <br>
-                                                seated:{{ $seatUsers[$i] }}
-                                            </button>
-                                        </form>
-                                    @elseif (array_key_exists($i, $emptyList))
-                                        <form action="{{ route('onSeat', ['seat_no' => $i]) }}" method="post">
-                                            @csrf
-                                            <button
-                                                class="w-[74px] h-10 border border-red-500 text-red-500 text-xs">{{ $emptyList[$i] }}<br>emp</button>
-                                        </form>
-                                    @else
-                                        <button class="h-10" disabled><br></button>
-                                    @endif
-                                @endfor
-                            </div>
+                        <div class="grid grid-cols-12 text-center">
+                            @for ($i = 1; $i < 421; $i++)
+                                @include('components.seat-layout')
+                            @endfor
                         </div>
-                        <div>
-                            <div class="grid grid-cols-12 text-center">
-                                @for ($i = 421; $i < 842; $i++)
-                                    @if (array_key_exists($i, $seatedList))
-                                        <form action="{{ route('offSeat', ['seat_no' => $i]) }}" method="post">
-                                            @csrf
-                                            <button
-                                                class="w-[74px] h-10 border border-cyan-500 text-cyan-500 text-xs tooltip tooltip-base-content"
-                                                data-tip="{{ $seatUsersName[$i] }}">
-
-                                                {{ $seatedList[$i] }}
-                                                <br>
-                                                seated:{{ $seatUsers[$i] }}
-                                            </button>
-                                        </form>
-                                    @elseif (array_key_exists($i, $emptyList))
-                                        <form action="{{ route('onSeat', ['seat_no' => $i]) }}" method="post">
-                                            @csrf
-                                            <button
-                                                class="w-[74px] h-10 border border-red-500 text-red-500 text-xs">{{ $emptyList[$i] }}<br>emp</button>
-                                        </form>
-                                    @else
-                                        <button class="h-10" disabled><br></button>
-                                    @endif
-                                @endfor
-                            </div>
+                        <div class="grid grid-cols-12 text-center">
+                            @for ($i = 421; $i < 842; $i++)
+                                @include('components.seat-layout')
+                            @endfor
                         </div>
                     </div>
                 </div>

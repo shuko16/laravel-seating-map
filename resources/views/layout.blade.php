@@ -12,15 +12,19 @@
             <div class="bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="grid grid-cols-2 text-center">
-                        <div class="grid grid-cols-12 text-center">
-                            @for ($i = 1; $i < 421; $i++)
-                                @include('components.seat-layout')
-                            @endfor
+                        <div>
+                            <div class="grid grid-cols-12 text-center">
+                                @for ($i = 1; $i < 421; $i++)
+                                    @include('components.seat-layout')
+                                @endfor
+                            </div>
                         </div>
-                        <div class="grid grid-cols-12 text-center">
-                            @for ($i = 421; $i < 842; $i++)
-                                @include('components.seat-layout')
-                            @endfor
+                        <div>
+                            <div class="grid grid-cols-12 text-center">
+                                @for ($i = 421; $i < 842; $i++)
+                                    @include('components.seat-layout')
+                                @endfor
+                            </div>
                         </div>
                     </div>
                 </div>

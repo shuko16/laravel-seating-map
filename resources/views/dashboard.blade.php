@@ -31,7 +31,7 @@
                                 </div>
                             @else
                                 <a
-                                    href="{{ route('dashboard', ['seat_id' => $seat->id, 'user_id' => Auth::user()->id]) }}">
+                                    href="{{ route('index', ['seat_id' => $seat->id, 'user_id' => Auth::user()->id]) }}">
                                     <x-secondary-button>emp</x-secondary-button>
                                 </a>
                             @endif

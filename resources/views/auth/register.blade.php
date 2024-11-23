@@ -10,10 +10,17 @@
         </div>
 
          <!-- Initials -->
-         <div>
+        <div>
             <x-input-label for="initials" :value="__('Initials')" />
             <x-text-input id="initials" class="block mt-1 w-full" type="text" name="initials" :value="old('initials')" required autocomplete="initials" />
             <x-input-error :messages="$errors->get('initials')" class="mt-2" />
+        </div>
+
+        <!-- extension -->
+        <div>
+            <x-input-label for="ex" :value="__('Extension')" />
+            <x-text-input id="ex" class="block mt-1 w-full" type="text" name="ex" :value="old('ex')" required autocomplete="ex" />
+            <x-input-error :messages="$errors->get('ex')" class="mt-2" />
         </div>
 
         <!-- Email Address -->

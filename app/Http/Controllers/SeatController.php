@@ -11,8 +11,8 @@ class SeatController extends Controller
 {
     public function index()
     {
-        $seatedList = Seat::whereSeatType(1)->pluck('ex', 'seat_no')->toArray();
-        $emptyList = Seat::whereSeatType(2)->pluck('ex', 'seat_no')->toArray();
+        $seatedList = Seat::whereSeatType(1)->pluck('seat_no')->toArray();
+        $emptyList = Seat::whereSeatType(2)->pluck('seat_no')->toArray();
         $seatUsersList = Seat::whereSeatType(1)->with('user')->get();
 
         $seatUsers = [];

@@ -16,7 +16,6 @@ return new class extends Migration
             $table->integer('seat_no');
             $table->integer('seat_type');
             $table->bigInteger('user_id')->nullable();
-            $table->string('ex')->nullable();
             $table->timestamps();
         });
     }

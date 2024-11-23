@@ -39,7 +39,6 @@ class SeatSeeder extends Seeder
                 'user_id' => null,
                 'seat_no' => $val,
                 'seat_type' => 2,
-                'ex' => '61'.str_pad($val, 3, "0", STR_PAD_LEFT),
             ]);
     
         }

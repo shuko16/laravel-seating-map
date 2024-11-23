@@ -8,9 +8,9 @@
     @endif
 </div> --}}
 
-@if (array_key_exists($i, $seatedList))
+@if (in_array($i, $seatedList))
     @include('components.on-seat')
-@elseif (array_key_exists($i, $emptyList))
+@elseif (in_array($i, $emptyList))
     @include('components.off-seat')
 @else
     <button class="h-10" disabled><br></button>

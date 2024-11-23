@@ -4,6 +4,7 @@
             {{ __('Seats') }}
         </h2>
     </x-slot>
+    <img src="./images/php.png" class="relative left-[860px] top-72">
     <div class="py-12">
         <div class="m-4 ml-12 text-red-500">
             {{ $errors->first('otherUserSeated') }}

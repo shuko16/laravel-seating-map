@@ -8,7 +8,6 @@
         border-red-500
         text-red-500
         text-xs">
-        {{ $emptyList[$i] }}
         <br>
         emp
     </button>

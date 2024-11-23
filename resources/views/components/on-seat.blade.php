@@ -11,7 +11,7 @@
         tooltip
         tooltip-base-content"
         data-tip="{{ $seatUsersName[$i] }}">
-        {{ $seatedList[$i] }}
+        {{ $seatUsersEx[$i] }}
         <br>
         seated:{{ $seatUsers[$i] }}
     </button>

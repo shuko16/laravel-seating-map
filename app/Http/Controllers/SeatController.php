@@ -17,9 +17,11 @@ class SeatController extends Controller
 
         $seatUsers = [];
         $seatUsersName = [];
+        $seatUsersEx = [];
         foreach ($seatUsersList as $seatUser) {
             $seatUsers[$seatUser->seat_no] = $seatUser->user->initials ?? 'なし';
             $seatUsersName[$seatUser->seat_no] = $seatUser->user->name ?? 'なし';
+            $seatUsersEx[$seatUser->seat_no] = $seatUser->user->ex ?? 'なし';
         }
         return view('layout', [
             'seatedList' => $seatedList,
@@ -27,6 +29,7 @@ class SeatController extends Controller
             'seatUsersList' => $seatUsersList,
             'seatUsers' => $seatUsers,
             'seatUsersName' => $seatUsersName,
+            'seatUsersEx' => $seatUsersEx,
         ]);
     }
 
